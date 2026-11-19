@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>
+        Java Test Generator
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="logo">
+        <span class="logo-mark">
+            ∫
+        </span>
+        <div>
+            <strong>
+                Java Test Generator
+            </strong>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="welcome">
+        <div>
+            <span class="eyebrow">
+                ASSESSMENT DESIGN MADE SIMPLE
+            </span>
+            <h1>
+                Create your java tests.
+            </h1>
+            <p>
+                Choose a topic, configure your assessment, and create
+                a printable test with a separate instructor answer key.
+            </p>
+        </div>
+        <div class="hero-icon">
+            ∫ f(x) dx
+        </div>
+    </section>
+    <nav aria-label="Workspace sections" class="tabs">
+        <button class="tab active" data-tab="builder" type="button">Test Builder</button>
+        <button class="tab" data-tab="topics" type="button">Browse Topics</button>
+        <button class="tab" data-tab="preview" type="button">Test Preview</button>
+        <button class="tab" data-tab="answers" type="button">Answer Key</button>
+    </nav>
+    <section class="tab-panel active" id="builder">
+        <div class="workspace">
+            <aside class="card settings">
+                <div class="section-heading">
+                    <span class="step">01</span>
+                    <div>
+                        <h2>Test Settings</h2>
+                        <p>Customize your assessment</p>
+                    </div>
+                </div>
+                <label for="topic">Java topic</label>
+                <select id="topic">
+                    <option value="ALL">All topics (mixed test)</option>
+                </select>
+                <label for="count">Number of questions</label>
+                <select id="count">
+                    <option value="5">5 questions</option>
+                    <option selected="" value="10">10 questions</option>
+                    <option value="15">15 questions</option>
+                    <option value="20">20 questions</option>
+                    <option value="30">30 questions</option>
+                </select>
+                <label for="title">Test title</label>
+                <input id="title" maxlength="90" value="Java Assessment"/>
+                <div class="two-fields">
+                    <div>
+                        <label for="duration">Duration (minutes)</label>
+                        <input id="duration" max="300" min="1" type="number" value="60"/>
+                    </div>
+                    <div>
+                        <label for="points">Points per question</label>
+                        <input id="points" max="100" min="1" type="number" value="5"/>
+                    </div>
+                </div>
+                <label class="check"><input checked="" id="shuffle" type="checkbox"/><span>Shuffle questions</span></label>
+                <button class="primary" id="generate" type="button">Generate Test →</button>
+                <p class="status" id="status" role="status">Ready to generate your test.</p>
+            </aside>
+            <div class="card overview">
+                <div class="section-heading">
+                    <span class="step">02</span>
+                    <div>
+                        <h2>Assessment Overview</h2>
+                        <p>Your test at a glance</p>
+                    </div>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <strong id="metric-topics">10</strong>
+                        <span>Java topics</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="metric-types">100</strong>
+                        <span>Question types</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="metric-questions">10</strong>
+                        <span>Selected questions</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <h3>How it works</h3>
+                    <p>Choose a java topic or combine all topics. Select the number of questions, then generate your test. Use the preview and answer-key tabs to review or print your assessment.</p>
+                </div>
+                <div class="actions">
+                    <button class="outline" id="go-topics" type="button">Explore Topics</button>
+                    <button class="outline" id="go-preview" type="button">Open Preview</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tab-panel" id="topics">
+        <div class="card">
+            <div class="section-heading">
+                <span class="step">03</span>
+                <div>
+                    <h2>Java Topic Library</h2>
+                    <p>Choose from 10 subject areas, each with 10 question types</p>
+                </div>
+            </div>
+            <div class="topic-grid" id="topic-grid">
+            </div>
+        </div>
+    </section>
+    <section class="tab-panel" id="preview">
+        <div class="card paper">
+            <div class="preview-toolbar">
+                <div>
+                    <span class="eyebrow">STUDENT VERSION</span>
+                    <h2 id="test-heading">Test Preview</h2>
+                </div>
+                <div class="actions">
+                    <button class="outline" id="print" type="button">Print Student Test</button>
+                    <button class="primary compact" id="preview-key" type="button">View Answer Key</button>
+                </div>
+            </div>
+            <div class="placeholder" id="test-output">No test generated yet. Visit Test Builder and click Generate Test.</div>
+        </div>
+    </section>
+    <section class="chat-panel" id="chat-panel" aria-label="Java help chatbot"><h3>Java Help Chatbot</h3><p>Select a question or type its question number or exact text to see the method and answer.</p>
+        <div class="chat-history" id="chat-history" aria-live="polite">
+            <div class="chat-message tutor">Hello! Generate a test, then choose a question and ask me to explain it step by step.</div>
+        </div>
+        <select class="chat-question" id="chat-question" aria-label="Choose test question">
+            <option value="">Choose a question (optional)</option>
+        </select><textarea class="chat-input" id="chat-input" rows="2" placeholder="Example: Question 2 —please show the steps"></textarea><button type="button" id="chat-send">Ask chatbot</button>
+    </section>
+    <section class="tab-panel" id="answers">
+        <div class="card paper">
+            <div class="preview-toolbar">
+                <div><span class="eyebrow">INSTRUCTOR VERSION</span>
+                    <h2>Answer Key</h2>
+                </div>
+                <button class="primary compact" id="keyprint" type="button">Print Answer Key</button>
+            </div>
+            <div class="placeholder" id="answer-output">Generate a test to view the answer key.</div>
+        </div>
+    </section>
+</main>
+<footer>Java Test Generator • Spring Boot Learning Application</footer>
+<script src="javaBank.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

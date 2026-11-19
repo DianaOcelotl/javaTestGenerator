@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JavaTestGeneratorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JavaTestGeneratorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(JavaTestGeneratorApplication.class, args);
+    }
 
 }
