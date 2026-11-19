@@ -275,10 +275,11 @@ $('go-topics').addEventListener('click',()=>activate('topics'));
 $('go-preview').addEventListener('click',()=>activate('preview'));
 $('preview-key').addEventListener('click',()=>activate('answers'));
 $('count').addEventListener('change',()=>{$('metric-questions').textContent=$('count').value;});
+
 function generate(){
     const count=Number($('count').value),
         topicIndex=$('topic').value;
-    selectedTopic=topicIndex==='ALL'?'Mixed Calculus':names[Number(topicIndex)];
+    selectedTopic=$('title').value.trim() || 'Java Programming Assessment';
     let
         pool=(topicIndex==='ALL'?names:[names[Number(topicIndex)]]).flatMap(n=>[...bank[n].map(([type,q,a])=>({topic:n,type,q,a})),...numericalVariants(n)]);
     if(!pool.length){$('status').textContent='No questions available for this topic.';return;}
@@ -334,69 +335,113 @@ function answerMatches(given, expected) {
         Number.isFinite(y) && Math.abs(x-y)<1e-8;
 }
 function explainQuestion(item) {
-    const q=item.q, a=item.a, t=item.topic;
-    const lines=[];
-    if (/Generated factoring limit/.test(item.type)) {
-        const c=q.match(/x→(\d+)/)?.[1];
-        lines.push('Step 1: Recognize the difference of squares: x² − a² = (x − a)(x + a).',
-            `Step 2: Factor the numerator and cancel the common(x − ${c||'a'}) factor for x ≠ ${c||'a'}.`,
-            `Step 3: Substitute x = ${c||'a'} into the simplified expression x + ${c||'a'}.`);
-    } else if (/Generated polynomial limit/.test(item.type)
-        || (t.includes('Limits') &&
-            /substitution/i.test(item.type))) {
-        lines.push('Step 1: Check whether the expression is continuous at the approach value.',
-            'Step 2: Substitute the approach value for x into each term.',
-            'Step 3: Evaluate powers, multiplication, and addition or subtraction.');
-    } else if (/Generated derivative at a point/.test(item.type)) {
-        lines.push('Step 1: Differentiate each term using d(xⁿ)/dx = nxⁿ⁻¹.',
-            'Step 2: Simplify the derivative f′(x).',
-            'Step 3: Substitute the requested x-value into f′(x).');
-    } else if (/Generated power rule/.test(item.type) ||
-        t==='Derivatives') {
-        lines.push('Step 1: Identify the function and the differentiation rule required.',
-            'Step 2: Apply the power rule d(axⁿ)/dx = anxⁿ⁻¹ term by term when applicable.',
-            'Step 3: Simplify the resulting expression; use product, quotient, or chain rules when needed.');
-    } else if (/Generated definite integral/.test(item.type))
-    {
-        lines.push('Step 1: Find an antiderivative using ∫xⁿ dx = xⁿ⁺¹/(n+1).',
-            'Step 2: Evaluate the antiderivative at the upperbound.',
-            'Step 3: Subtract its value at the lower bound.');
-    } else if (/Generated indefinite integral/.test(item.type) || t==='Integrals') {
-        lines.push('Step 1: Integrate each term separately using the appropriate integration rule.',
-            'Step 2: Increase each power by one and divide by the new power, when using the power rule.',
-            'Step 3: Combine the terms and add the constant of integration C for indefinite integrals.');
-    } else if (/Generated substitution/.test(item.type)) {
-        lines.push('Step 1: Set u equal to the expression inside the parentheses.',
-            'Step 2: Compute du and replace the matching x dx factor.',
-            'Step 3: Integrate the resulting power of u and substitute the original expression back.');
-    } else if (/Generated average value/.test(item.type)) {
-        lines.push('Step 1: Use the average-value formula (1/(b−a)) ∫ from a to b f(x) dx.',
-            'Step 2: Integrate f(x) and evaluate at both endpoints.',
-            'Step 3: Divide by the interval length b−a.');
-    } else if (/Generated marginal cost/.test(item.type)) {
-        lines.push('Step 1: Differentiate the cost function C(x) term by term.',
-            'Step 2: Evaluate C′(x) at the requested production level.',
-            'Step 3: Interpret the result as marginal cost.');
-    } else if (t.includes('Limits')) {
-        lines.push('Step 1: Try direct substitution.',
-            'Step 2: If the result is indeterminate, consider factoring, rationalizing, or a standard limit identity.',
-            'Step 3: Evaluate the simplified limit, paying attention to one-sided behavior.');
-    } else if (t.includes('Integration') ||
-        t.includes('Integrals')) {
-        lines.push('Step 1: Identify whether substitution, integration by parts, or a geometric formula applies.',
-            'Step 2: Set up the corresponding integral and evaluate it.',
-            'Step 3: Check bounds, units, and the constant C where appropriate.');
+    const q = item.q;
+    const a = item.a;
+    const t = item.topic;
+    const lines = [];
+
+    // Variable declarations and data types
+    if (/declare a variable|declare a boolean|declaring a variable/i.test(q)) {
+        const match = a.match(/\b(int|double|float|long|boolean|char|String)\s+(\w+)\s*(?:=\s*(.*?))?;/);
+
+        if (match) {
+            const dataType = match[1];
+            const variableName = match[2];
+            const value = match[3];
+
+            const descriptions = {
+                int: "int stores whole numbers.",
+                double: "double stores decimal numbers.",
+                float: "float stores decimal numbers with single precision.",
+                long: "long stores large whole numbers.",
+                boolean: "boolean stores true or false.",
+                char: "char stores a single character.",
+                String: "String stores text."
+            };
+
+            lines.push(
+                `Step 1: Identify the data type. ${descriptions[dataType]}`,
+                `Step 2: Name the variable ${variableName}.`,
+                value !== undefined
+                    ? `Step 3: Use the assignment operator (=) to assign ${value}.`
+                    : "Step 3: No initial value is required.",
+                "Step 4: End the Java statement with a semicolon (;)."
+            );
+        } else {
+            lines.push(
+                "Step 1: Identify the required data type.",
+                "Step 2: Choose the variable name.",
+                "Step 3: Assign a value if requested.",
+                "Step 4: End the statement with a semicolon."
+            );
+        }
+
+        // Conditional statements
+    } else if (/if statement|if-else|conditional/i.test(q + " " + t)) {
+        lines.push(
+            "Step 1: Identify the condition that needs to be evaluated.",
+            "Step 2: Write an if statement using parentheses around the condition.",
+            "Step 3: Place the statements to execute inside curly braces.",
+            "Step 4: Add an else block if an alternative action is required."
+        );
+
+        // Loops
+    } else if (/for loop|while loop|do-while|iteration/i.test(q + " " + t)) {
+        lines.push(
+            "Step 1: Identify how many times the code should repeat.",
+            "Step 2: Choose the appropriate loop: for, while, or do-while.",
+            "Step 3: Define the loop condition and update the counter if needed.",
+            "Step 4: Check that the loop eventually terminates."
+        );
+
+        // Arrays
+    } else if (/array|arrays/i.test(q + " " + t)) {
+        lines.push(
+            "Step 1: Identify the array's data type.",
+            "Step 2: Declare or initialize the array using Java syntax.",
+            "Step 3: Access elements using their zero-based indices.",
+            "Step 4: Verify that each index is within the array bounds."
+        );
+
+        // Methods
+    } else if (/method|function|return value/i.test(q + " " + t)) {
+        lines.push(
+            "Step 1: Identify the method's purpose and return type.",
+            "Step 2: Define the method name and parameters.",
+            "Step 3: Write the statements inside the method body.",
+            "Step 4: Return a value if the method is not void."
+        );
+
+        // Classes and objects
+    } else if (/class|object|constructor/i.test(q + " " + t)) {
+        lines.push(
+            "Step 1: Identify the class or object being requested.",
+            "Step 2: Define the class structure and its fields.",
+            "Step 3: Add constructors or methods as required.",
+            "Step 4: Check that the Java syntax is valid."
+        );
+
+        // General Java questions
     } else {
-        lines.push('Step 1: Identify the relevant calculus definition or theorem.',
-            'Step 2: Substitute the information from the problem and simplify.',
-            'Step 3: Check the result against the question’s conditions.');
+        lines.push(
+            "Step 1: Read the question and identify the Java concept.",
+            "Step 2: Determine the syntax or programming rule needed.",
+            "Step 3: Apply that rule to construct the solution.",
+            "Step 4: Check data types, capitalization, braces, and semicolons."
+        );
     }
-    return `Question: ${q}\n\n${lines.join('\n')}\n\nAnswer in the question bank: ${a}\n\nNote: These are rule-based guidance steps. For some original questions, they describe the method rather than every algebraic intermediate step.`;
+
+    return `Question: ${q}
+
+${lines.join('\n')}
+
+Hint: Use these steps to construct your own Java solution.
+(Remember to check your syntax, data types, and semicolons.)`;
 }
 function tutorReply(text, selectedIndex) {
     if (!current.length) return 'Generate a test first so I can use its questions and answer key.';
     const input=text.trim();
-    if (!input && selectedIndex===null) return 'Enter a calculus question or choose a question number.';
+    if (!input && selectedIndex===null) return 'Enter a Java programming question or choose a question number.';
     let idx=selectedIndex;
     if (idx===null) {
         const
