@@ -49,6 +49,11 @@ button {
     font-size:33px;
     font-weight:bold
 }
+.logo-mark img {
+    height: 32px;
+    width: auto;
+    display: block;
+}
 .logo strong {
     display:block;
     font-size:21px;
@@ -111,6 +116,11 @@ main {
     border:1px solid #c5e5f6;
     padding:20px 25px;
     border-radius:18px
+}
+.hero-icon img{
+    width: 120px;
+    height: auto;
+    display: block;
 }
 .tabs {
     display:flex;

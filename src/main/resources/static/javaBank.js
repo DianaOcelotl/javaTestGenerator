@@ -121,21 +121,6 @@ window.JAVA_BANK = {
             "10"
         ],
         [
-            "Types of loops",
-            "What type of loop must execute at least once regardless of the initial condition?",
-            "do-while loop"
-        ],
-        [
-            "Types of loops",
-            "What type of loop causes endless execution?",
-            "infinite loop"
-        ],
-        [
-            "Loops",
-            "What makes a while loop different from an if statement?",
-            "an if statement only occurs once"
-        ],
-        [
             "Output",
             "int count = 0;\n" +
             "while(count<3){\n" +
@@ -188,7 +173,17 @@ window.JAVA_BANK = {
             "\tcount++;\n" +
             "}\n" +
             "What is the output?",
-            "HelloHelloHelloHelloHello5"
+            "HelloHelloHelloHelloHello"
+        ],
+        [
+            "Output",
+            "For(int i =0; i<=10;i+=2){\n\tSystem.out.print(i + \" \");\n}",
+            "0 2 4 6 8 10"
+        ],
+        [
+            "Output",
+            "int sum=0;\nfor(int i =1; i<=4; i++){\n\tsum += i;\n}\nSystem.out.println(sum);",
+            "10"
         ]
     ],
     "Arrays":[
@@ -217,16 +212,6 @@ window.JAVA_BANK = {
             "System.out.println(scores[2]);"
         ],
         [
-            "Definition",
-            "What is a collection of elements(of the same data type) called?",
-            "array"
-        ],
-        [
-            "True or false",
-            "Once created, an arrays size cannot be changed. Is this statement true or false?",
-            "true"
-        ],
-        [
             "Output",
             "int[][] matrix = new int[4][8];\n" +
             "for(int row=0; row<matrix.length; row++){\n" +
@@ -238,6 +223,21 @@ window.JAVA_BANK = {
             "System.out.print(val);\n" +
             "What is the output?",
             "2"
+        ],
+        [
+            "Output",
+            "int[] vals = {72,31,52,89,60,77,59,94,24,4,17,97};\nSystem.out.println(vals[vals.length-1]);\nWhat is the output?",
+            "97"
+        ],
+        [
+            "Output",
+            "int[] vals = {30,78,65,31,21,74,42,63,77};\nvals[7] = 80;\nSystem.out.println(vals[7]);\nWhat is the output?",
+            "80"
+        ],
+        [
+            "Output",
+            "int[] nums = {89,27,90,74};\nint sum=0;\nfor(int n:nums){\n\tsum += n;\n}\nSystem.out.println(sum);\nWhat is the output?",
+            "280"
         ]
     ]
 };

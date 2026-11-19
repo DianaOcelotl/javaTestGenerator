@@ -140,104 +140,121 @@ function numericalVariants(topic){
                 q: `int num = ${a};\nif (num % 2 == 0)\n\tSystem.out.println("Even");\nelse\n\tSystem.out.println("Odd");\nWhat is the output?`,
                 a: a % 2 === 0 ? "Even" : "Odd"
             });
-        }else if(topic === 'Loops'){
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
-            variants.push({
-                topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+        }else if (topic === 'Loops') {
+            const add = (type, q, a) => variants.push({ topic, type, q, a: String(a) });
+            let seq = [], temp = a;
+
+            do { seq.push(temp++); } while (temp < b);
+            add("Do-While Output",
+                `int count = ${a};\ndo {\n\tSystem.out.print(count + " ");\n\tcount++;\n} while (count < ${b});\nWhat is the output?`,
+                seq.join(" ")
+            );
+
+            seq = [];
+            for (let k = 1; k <= c; k++) seq.push(k);
+            add("While Loop Output",
+                `int count = 0;\nwhile (count < ${c}) {\n\tcount++;\n\tSystem.out.print(count + " ");\n}\nWhat is the output?`,
+                seq.join(" ")
+            );
+            seq = [];
+            for (let k = 2; k <= b + 3; k++) seq.push(k);
+            add("While Loop Output",
+                `int num = 1;\nwhile (num < ${b + 3}) {\n\tnum++;\n\tSystem.out.print(num + " ");\n}\nSystem.out.print("Done");\nWhat is the output?`,
+                `${seq.join(" ")} Done`
+            );
+            let count = 0;
+            temp = 2;
+            while (temp <= a * 8) { temp *= 2; count++; }
+            add("Loop Iterations",
+                `When the following code is executed, how many iterations of the loop will be performed?\nint count = 0;\nint number = 2;\nboolean done = false;\nwhile (!done) {\n\tnumber = number * 2;\n\tif (number > ${a * 8})\n\t\tdone = true;\n\tcount++;\n}`,
+                count
+            );
+            temp = 2;
+            while (temp <= a * 4) temp *= 2;
+            add("While Loop Trace",
+                `int x = 2;\nwhile (x <= ${a * 4}) {\n\tx = 2 * x;\n}\nSystem.out.println(x);\nWhat is the output?`,
+                temp
+            );
+            add("While Loop Output",
+                `int count = 0;\nwhile (count < ${c}) {\n\tSystem.out.print("Hello");\n\tcount++;\n}\nWhat is the output?`,
+                "Hello".repeat(c)
+            );
+            seq = [];
+            const step = (b % 3) + 2;
+            for (let k = 0; k <= a * 2; k += step) seq.push(k);
+            add("For Loop Output",
+                `for (int i = 0; i <= ${a * 2}; i += ${step}) {\n\tSystem.out.print(i + " ");\n}\nWhat is the output?`,
+                seq.join(" ")
+            );
+            const n = c + 2;
+            add("Accumulator Loop",
+                `int sum = 0;\nfor (int i = 1; i <= ${n}; i++) {\n\tsum += i;\n}\nSystem.out.println(sum);\nWhat is the output?`,
+                (n * (n + 1)) / 2
+            );
         }else if(topic === 'Arrays'){
+            const arr = Array.from({ length: c + 4 }, () => rand(1, 99));
+            const idx = rand(0, arr.length - 1);
+            const types = [
+                ["Cats", "myPets"], ["String", "words"], ["int", "scores"], ["double", "prices"], ["Dog", "puppies"]];
+            const [dataType, arrName] = types[rand(0, types.length - 1)];
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Creating an array",
+                q: `Create an array of ${a} ${dataType} named ${arrName}.`,
+                a: `${dataType}[] ${arrName} = new ${dataType}[${a}];`
+            });
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Array Indexing",
+                q: `int[] vals = {${arr.join(", ")}};\nSystem.out.println(vals[${idx}]);\nWhat is the output?`,
+                a: String(arr[idx])
+            });
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Array Length",
+                q: `int[] vals = {${arr.join(", ")}};\nSystem.out.println(vals.length);\nWhat is the output?`,
+                a: String(arr.length)
+            });
+            const ordinals = ["first", "second", "third", "fourth", "fifth"];
+            const pos = rand(0, ordinals.length - 1);
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Array Code",
+                q: `Write a statement that displays the value stored in the ${ordinals[pos]} position of the array scores.`,
+                a: `System.out.println(scores[${pos}]);`
+            });
+            const rows = (a % 4) + 3;
+            const cols = (b % 5) + 4;
+            const r1 = rand(0, rows - 1), c1 = rand(0, cols - 1);
+            const r2 = rand(0, rows - 1), c2 = rand(0, cols - 1);
+            const cell = (r, col) => r * col + Math.floor(col / 2) + r * (col + 1);
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "2D Array Output",
+                q: `int[][] matrix = new int[${rows}][${cols}];\nfor (int row = 0; row < matrix.length; row++) {\n\tfor (int column = 0; column < matrix[row].length; column++) {\n\t\tmatrix[row][column] = row * column + column / 2 + row * (column + 1);\n\t}\n}\nint val = matrix[${r1}][${c1}] + matrix[${r2}][${c2}];\nSystem.out.print(val);\nWhat is the output?`,
+                a: String(cell(r1, c1) + cell(r2, c2))
+            });
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Array Last Element",
+                q: `int[] vals = {${arr.join(", ")}};\nSystem.out.println(vals[vals.length - 1]);\nWhat is the output?`,
+                a: String(arr[arr.length - 1])
+            });
+            const newVal = a * 10;
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Modifying an Array",
+                q: `int[] vals = {${arr.join(", ")}};\nvals[${idx}] = ${newVal};\nSystem.out.println(vals[${idx}]);\nWhat is the output?`,
+                a: String(newVal)
+            });
+            const sumArr = arr.slice(0, 4);
+            const total = sumArr.reduce((acc, n) => acc + n, 0);
             variants.push({
                 topic,
-                type: "",
-                q: ``,
-                a: ``
-            })
+                type: "Array Loop Sum",
+                q: `int[] nums = {${sumArr.join(", ")}};\nint sum = 0;\nfor (int n : nums) {\n\tsum += n;\n}\nSystem.out.println(sum);\nWhat is the output?`,
+                a: String(total)
+            });
         }
     }
     return variants;
