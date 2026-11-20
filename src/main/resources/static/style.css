@@ -2,8 +2,8 @@
     --sky:#d8f0ff;
     --pale:#f2faff;
     --blue:#2189c5;
-    --deep:#194c6c;
-    --text:#253f51;
+    --deep:#ED8B00;
+    --text:#ED8B00;
     --muted:#638093;
     --line:#d5e8f3;
     --white:#fff
@@ -15,7 +15,7 @@ body {
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
     line-height:1.6;
-    background:#f5fbff;
+    background: #383a3c;
     color:var(--text)
 }
 button,input,select {
@@ -25,8 +25,8 @@ button {
     cursor:pointer
 }
 .topbar {
-    background:#e1f3ff;
-    border-bottom:1px solid #c9e6f7;
+    background: #484b4e;
+    border-bottom:1px solid #ffbf1a;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -45,7 +45,7 @@ button {
     width:49px;
     height:49px;
     border-radius:14px;
-    background:#b9e4fc;
+    background: rgb(73 1 1 / 0.45);
     font-size:33px;
     font-weight:bold
 }
@@ -86,27 +86,27 @@ main {
     justify-content:space-between;
     gap:20px;
     padding:37px 42px;
-    background:linear-gradient(115deg,#d3edff,#eff9ff);
-    border:1px solid #c9e6f6;
+    background: #484b4e;
+    border:rgb(73 1 1 / 0.45);
     border-radius:20px;
     margin-bottom:27px
 }
 .welcome h1 {
     font-size:clamp(27px,3.5vw,42px);
     line-height:1.2;
-    color:#174e72;
+    color:#ED8B00;
     margin:11px 0
 }
 .welcome p {
     max-width:690px;
     margin:0;
-    color:#52748b
+    color: rgb(237 139 0 / 0.81)
 }
 .eyebrow {
     font-size:11px;
     letter-spacing:.16em;
     font-weight:bold;
-    color:#277fb4
+    color:rgb(237 139 0 / 0.81)
 }
 .hero-icon {
     font-size:31px;
@@ -126,7 +126,7 @@ main {
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    border-bottom:1px solid #d1e6f2;
+    border-bottom:1px solid #ffbf1a;
     padding:0 4px 13px;
     margin-bottom:22px
 }
@@ -135,16 +135,16 @@ main {
     border-radius:10px;
     padding:12px 20px;
     background:transparent;
-    color:#56788c;
+    color: #ffffff;
     font-weight:bold
 }
 .tab:hover {
-    background:#e6f5ff
+    background: #ba862a
 }
 .tab.active {
-    background:#d7efff;
-    color:#125c89;
-    border-color:#b8def3
+    background:#ba862a;
+    color: #ffffff;
+    border-color: #efc989
 }
 .tab-panel {
     display:none
@@ -158,8 +158,8 @@ main {
     gap:22px
 }
 .card {
-    background:white;
-    border:1px solid var(--line);
+    background: #484b4e;
+    border: rgb(250 250 250);
     border-radius:18px;
     padding:29px;
     box-shadow:0 5px 24px #155f870a
@@ -175,8 +175,8 @@ main {
     place-items:center;
     min-width:43px;
     height:43px;
-    background:#d9f1ff;
-    color:#2378a8;
+    background:#ba862a;
+    color:white;
     border-radius:12px;
     font-weight:bold
 }
@@ -188,14 +188,14 @@ main {
 }
 .section-heading p {
     font-size:13px;
-    color:var(--muted);
+    color: rgb(237 139 0 / 0.81);
     margin:4px 0 0
 }
 label {
     display:block;
     font-size:13px;
     font-weight:bold;
-    color:#345a70;
+    color: #ffbf1a;
     margin:17px 0 7px
 }
 select,input:not([type=checkbox]) {
@@ -226,25 +226,25 @@ select:focus,input:focus,button:focus-visible {
 .check input {
     width:17px;
     height:17px;
-    accent-color:#278fc9
+    accent-color:#ba862a
 }
 .primary,.outline {
     border-radius:10px;
     padding:12px 19px;
     font-size:14px;
     font-weight:bold;
-    border:1px solid #2488c0
+    border:1px solid #ffffff
 }
 .primary {
-    background:#278fc9;
+    background:#ED8B00;
     color:white
 }
 .primary:hover {
-    background:#176d9f
+    background: #ddb978
 }
 .outline {
     background:#eaf7ff;
-    color:#176b99;
+    color:#ED8B00;
     border-color:#b9dff3
 }
 .outline:hover {
@@ -256,7 +256,7 @@ select:focus,input:focus,button:focus-visible {
 }
 .status {
     font-size:12px;
-    color:#5e8195;
+    color:#ED8B00;
     margin:13px 0 0
 }
 .metrics {
@@ -273,7 +273,7 @@ select:focus,input:focus,button:focus-visible {
 .metric strong {
     display:block;
     font-size:31px;
-    color:#1973a6;
+    color:#ED8B00;
     line-height:1.2
 }
 .metric span {
@@ -319,7 +319,7 @@ select:focus,input:focus,button:focus-visible {
     border-radius:13px;
     background:#f4fbff;
     border:1px solid #d4eaf7;
-    color:var(--text)
+    color: #ED8B00
 }
 .topic-card:hover {
     background:#e3f5ff;
@@ -328,7 +328,7 @@ select:focus,input:focus,button:focus-visible {
 .topic-number {
     font-size:12px;
     font-weight:bold;
-    color:#348fbe
+    color:#ED8B00
 }
 .topic-card strong {
     font-size:16px
@@ -338,7 +338,7 @@ select:focus,input:focus,button:focus-visible {
     color:var(--muted)
 }
 .topic-card .topic-link {
-    color:#197bb2!important;
+    color:#ED8B00!important;
     font-weight:bold;
     margin-top:5px
 }
@@ -387,15 +387,15 @@ select:focus,input:focus,button:focus-visible {
     margin:9px 0;
     font-size:16px;
     white-space: pre-wrap;
-    font-family: monospace; /* Optional: makes Java code align neatly */
+    font-family: monospace;
 }
 .question-label {
     font-size:12px;
-    color:#6b8b9d
+    color:#ffbf1a
 }
 .point-label {
     font-size:12px;
-    color:#658499
+    color: #fbcc87
 }
 .answer-space {
     height:55px;
@@ -409,7 +409,7 @@ select:focus,input:focus,button:focus-visible {
 footer {
     text-align:center;
     padding:30px;
-    color:#7892a2;
+    color:#007396;
     font-size:12px
 }
 @media(max-width:850px) {
@@ -482,16 +482,113 @@ footer {
 
 }
 /* Student response windows and built-in calculus tutor */
-.student-work{margin-top:14px;padding:14px;border:1px solid #c9d9ef;border-radius:12px;background:#f4f8ff}
-.student-work label{display:block;font-weight:650;margin-bottom:8px;color:#17375e}
-.student-answer{width:100%;box-sizing:border-box;min-height:85px;padding:12px;border:1px solid #a9bfdd;border-radius:8px;background:white;font:inherit;resize:vertical;color:#17263b}
-.student-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px}
-.student-controls button,#chat-send{border:0;border-radius:8px;padding:9px 13px;cursor:pointer;background:#2057a4;color:white;font:inherit;font-weight:600}
-.student-controls .ask-question{background:#0b7775}
-.answer-feedback{margin-top:9px;font-weight:600}.answer-feedback.correct{color:#176537}.answer-feedback.incorrect{color:#9a3c1c}
-.chat-panel{margin-top:22px;padding:20px;border:1px solid #bbd3e9;border-radius:14px;background:#eef6ff}
-.chat-panel h3{margin:0 0 6px;color:#183b67}.chat-panel p{margin:0 0 12px}
-.chat-history{max-height:400px;overflow:auto;background:white;border:1px solid #d0ddec;border-radius:10px;padding:12px;min-height:75px;margin-bottom:12px}
-.chat-message{white-space:pre-wrap;line-height:1.6;padding:11px;margin:7px 0;border-radius:9px;background:#edf3fc}
-.chat-message.student{background:#dff5ee}.chat-question,.chat-input{width:100%;box-sizing:border-box;border:1px solid #b4c9df;border-radius:8px;padding:10px;font:inherit;margin-bottom:9px;background:white;color:#17263b}
-@media print{.student-controls,.answer-feedback,.chat-panel{display:none!important}.student-work{background:white;border:1px solid #ccc}.student-answer{border:1px solid #bbb}}
+.student-work{
+    margin-top:14px;
+    padding:14px;
+    border:1px solid #c9d9ef;
+    border-radius:12px;
+    background:#f4f8ff
+}
+.student-work label{
+    display:block;
+    font-weight:650;
+    margin-bottom:8px;
+    color:#17375e
+}
+.student-answer{
+    width:100%;
+    box-sizing:border-box;
+    min-height:85px;padding:12px;
+    border:1px solid #a9bfdd;
+    border-radius:8px;
+    background:white;
+    font:inherit;
+    resize:vertical;
+    color:#17263b
+}
+.student-controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:9px
+}
+.student-controls button,#chat-send{
+    border:0;
+    border-radius:8px;
+    padding:9px 13px;
+    cursor:pointer;
+    background:rgb(73 1 1 / 0.45);
+    color:white;
+    font:inherit;
+    font-weight:600
+}
+.student-controls .ask-question{
+    background:#007396
+}
+.answer-feedback{
+    margin-top:9px;
+    font-weight:600
+}
+.answer-feedback.correct{
+    color:#176537
+}
+.answer-feedback.incorrect{
+    color:#9a3c1c
+}
+.chat-panel{
+    margin-top:22px;padding:20px;
+    border:1px solid #bbd3e9;
+    border-radius:14px;
+    background:#484b4e
+}
+.chat-panel h3{
+    margin:0 0 6px;
+    color:#ED8B00
+}
+.chat-panel p{
+    margin:0 0 12px;
+    color: rgb(237 139 0 / 0.81)
+}
+.chat-history{
+    max-height:400px;
+    overflow:auto;
+    background:white;
+    border:1px solid #d0ddec;
+    border-radius:10px;
+    padding:12px;
+    min-height:75px;
+    margin-bottom:12px
+}
+.chat-message{
+    white-space:pre-wrap;
+    line-height:1.6;
+    padding:11px;
+    margin:7px 0;
+    border-radius:9px;
+    background:#edf3fc
+}
+.chat-message.student{
+    background:#dff5ee
+}.chat-question,
+ .chat-input{
+     width:100%;
+     box-sizing:border-box;
+     border:1px solid #b4c9df;
+     border-radius:8px;
+     padding:10px;
+     font:inherit;
+     margin-bottom:9px;
+     background:white;
+     color:#17263b
+ }
+@media print{.student-controls,.answer-feedback,.chat-panel{
+        display:none!important
+}
+.student-work{
+    background:white;
+    border:1px solid #ccc
+}
+.student-answer{
+    border:1px solid #bbb
+}
+}
